@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_05_014203) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_13_112139) do
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "view_count"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -35,6 +43,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_05_014203) do
     t.string "image_id"
     t.integer "user_id"
     t.integer "status", default: 0, null: false
+    t.integer "view_count"
+    t.integer "book_id"
+    t.index ["book_id"], name: "index_posts_on_book_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -61,6 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_05_014203) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "books"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
 end

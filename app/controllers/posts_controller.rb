@@ -20,9 +20,15 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @book = @post.book
+
+    # 閲覧数を +1
+    @post.increment!(:view_count) if @book.present?
+
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
     @user = @post.user
+
   end
 
   def edit
