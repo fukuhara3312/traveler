@@ -1,0 +1,42 @@
+<div class="cover-show">
+  <div class="container d-flex flex-column align-items-center">
+    <div class="row mt-5 mb-5">
+      <% if @another_entry.present? %>
+      <h1 class="font-weight-normal mt-5 mb-5">
+        <%= link_to "#{@another_entry.user.name}さん", user_path(@another_entry.user) %>とのトークルーム</h1>
+      </h1>
+      <% else %>
+        <h1 class="font-weight-normal mt-5 mb-5">トークルーム</h1>
+      <% end %>
+    </div>
+
+      <!-- メッセージ一覧 -->
+      <div class="chat-box border rounded p-3 mb-4" style="height: 400px; overflow-y: auto;">
+        <% @messages.each do |message| %>
+          <% if message.user == current_user %>
+            <!-- 自分のメッセージ -->
+            <div class="d-flex justify-content-end mb-2">
+              <div class="bg-primary text-white p-2 rounded">
+                <%= message.content %>
+                <div class="text-right small"><%= message.created_at.strftime('%H:%M') %></div>
+              </div>
+            </div>
+          <% else %>
+            <!-- 相手のメッセージ -->
+            <div class="d-flex justify-content-start mb-2">
+              <div class="bg-light p-2 rounded">
+                <strong><%= message.user.name %></strong><br>
+                <%= message.content %>
+                <div class="text-right small"><%= message.created_at.strftime('%H:%M') %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    <%= form_with model: [@room, @message], local: true do |f| %>
+    <%= f.text_field :message, placeholder: "メッセージを入力" , size:60, class:"form-text-field" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "送信する",class: 'form-submit'%>
+      <% end %>
+</div>
