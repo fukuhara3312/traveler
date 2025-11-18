@@ -1,0 +1,65 @@
+/* チャット全体の背景 */
+.chat-box {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 15px;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+/* メッセージ共通 */
+.chat-message {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* 相手のメッセージ（左） */
+.chat-message-left {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+/* 自分のメッセージ（右） */
+.chat-message-right {
+  background: #4CAF50; /* Bootstrap bg-success より落ち着いた色 */
+  color: white;
+}
+
+/* 吹き出しの影 */
+.chat-message-left,
+.chat-message-right {
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* 送信フォームの見た目調整 */
+textarea.form-control {
+  resize: none;
+}
+
+/* リンクの装飾 */
+.chat-header-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.chat-header-link:hover {
+  text-decoration: underline;
+}
+
+/* スクロールバーのデザイン（Chrome用） */
+.chat-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
