@@ -1,9 +1,19 @@
+.cover-user-edit {
+    height: 100%;
+    width: 100%;
+    background-image: url(/assets/mypage-scaled.jpg);
+    background-color: rgba(255, 255, 255, 0.4);
+    background-blend-mode: lighten;
+    background-size: 100% 100%;
+}
+
 /* チャット全体の背景 */
 .chat-box {
   background: #f8f9fa;
-  border-radius: 12px;
-  padding: 15px;
+  border-radius: 0px;
+  padding: 0px;
   height: 500px;
+  width: 1000px;
   overflow-y: scroll;
 }
 
@@ -18,15 +28,15 @@
 
 /* 相手のメッセージ（左） */
 .chat-message-left {
-  background: #ffffff;
+  background-color: var(--bs-danger-bg-subtle);
   border: 1px solid #ddd;
-  color: #333;
+   color: var(--bs-body-color);
 }
 
 /* 自分のメッセージ（右） */
 .chat-message-right {
-  background: #4CAF50; /* Bootstrap bg-success より落ち着いた色 */
-  color: white;
+  background-color: var(--bs-success-bg-subtle);
+  color: var(--bs-body-color);
 }
 
 /* 吹き出しの影 */

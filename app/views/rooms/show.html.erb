@@ -1,4 +1,5 @@
 <div class="cover-show">
+<div class="cover-user-edit">
   <div class="container d-flex flex-column align-items-center">
     <div class="chat-room">
       <div class="row mt-5 mb-5">
@@ -10,40 +11,40 @@
           <h1 class="font-weight-normal mt-5 mb-5">トークルーム</h1>
         <% end %>
     </div>
+</div>
 
-<div class="container mt-4">
-  <!-- 会話ログ -->
+  <!-- 会話ログ(チャットボックス) -->
   <div class="chat-box border rounded p-3 mb-4" style="height: 500px; overflow-y: scroll; background-color: #f8f9fa;">
     <% @messages.each do |message| %>
       <% if message.user_id == current_user.id %>
         <!-- 自分のメッセージ（右側） -->
         <div class="d-flex justify-content-end mb-3">
-          <div class="p-2 rounded bg-success text-white" style="max-width: 70%;">
+          <div class="p-2 rounded chat-message-right" style="max-width: 70%;">
             <%= simple_format(message.message) %>
             </div>
           </div>
-        </div>
       <% else %>
         <!-- 相手のメッセージ（左側） -->
         <div class="d-flex justify-content-start mb-3">
-          <div class="p-2 rounded bg-white border" style="max-width: 70%;">
+          <div class="p-2 rounded chat-message-left" style="max-width: 70%;">
             <strong><%= message.user.name %></strong><br>
             <%= simple_format(message.message) %>
             </div>
           </div>
-        </div>
 
       <% end %>
 
     <% end %>
   </div>
 </div>
-
+    <!-- メッセージ送信フォーム -->
+    <div style="text-align: center;">
     <%= form_with model: [@room, @message], local: true do |f| %>
     <%= f.text_field :message, placeholder: "メッセージを入力" , size:60, class:"form-text-field" %>
         <%= f.submit "送信する",class: 'form-submit'%>
       <% end %>
     </div>
-    </div>
+
   </div> <!-- ← containerの閉じタグ -->
 </div> <!-- ← cover-showの閉じタグ -->
+</div> <!-- ← cover-user-editの閉じタグ -->
